@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 class MultiTenantSingleDbGrailsPlugin {
     private Logger log = LoggerFactory.getLogger('grails.plugin.multiTenant.MultiTenantSingleDbPlugin')
 
-    def version = "0.9.0-SNAPSHOT"
+    def version = "0.10.0-SNAPSHOT"
     def grailsVersion = "1.3.5 > *"
 
     def loadAfter = [
@@ -28,7 +28,8 @@ class MultiTenantSingleDbGrailsPlugin {
 
     def license = "APACHE"
     def developers = [
-        [ name: "Steve Ronderos", email: "steve@ronderos.com" ]
+        [ name: "Steve Ronderos", email: "steve@ronderos.com" ],
+        [ name: "Patrick Turcotte", email: "patrick@mobilus-technologies.com" ]
     ]
     def issueManagement = [ system: "github", url: "https://github.com/multi-tenant/grails-multi-tenant-single-db/issues" ]
     def scm = [ url: "https://github.com/multi-tenant/grails-multi-tenant-single-db" ]
