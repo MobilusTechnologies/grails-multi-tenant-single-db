@@ -14,7 +14,7 @@ class Animal {
     String name
 
     static mapping = {
-        tenantIdIndex indexColumn: [name: "tenantId", type:Integer]
+        tenantIdIndex indexColumn: [name: "tenantId", type:Long]
     }
 }
 {code}
@@ -37,7 +37,7 @@ class User {
     String username
 
     static mapping = {
-        tenantIdIndex indexColumn: [name: "tenantId", type:Integer]
+        tenantIdIndex indexColumn: [name: "tenantId", type:Long]
     }
     
     // This will allow fast lookup on tenant alone and in

@@ -4,13 +4,12 @@ import grails.plugin.multitenant.core.CurrentTenant;
 import grails.plugins.hawkeventing.Event;
 import grails.plugins.hawkeventing.annotation.Consuming;
 import grails.plugins.hawkeventing.annotation.HawkEventConsumer;
-
-import java.util.Set;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.engine.FilterDefinition;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
+
+import java.util.Set;
 
 /**
  * Subscribes itself to hibernate.sessionCreated events. Enables the tenant
@@ -29,14 +28,14 @@ public class TenantHibernateFilterEnabler {
     @Consuming("hibernate.sessionCreated")
     public void newHibernateSessionCreated(Event event) {
         Session newSession = (Session) event.getPayload();
-        Integer currentTenantId = currentTenant.get();
+        Long currentTenantId = currentTenant.get();
         updateFilterParameter(newSession, currentTenantId);
     }
 
     @Consuming(CurrentTenant.TENANT_AFTER_CHANGE_EVENT)
     public void currentTenantUpdated(Event event) {
         if (hasSessionBoundToThread()) {
-            Integer updatedTenantId = (Integer) event.getPayload();
+            Long updatedTenantId = (Long) event.getPayload();
             Session currentSession = sessionFactory.getCurrentSession();
             updateFilterParameter(currentSession, updatedTenantId);
         }
@@ -46,7 +45,7 @@ public class TenantHibernateFilterEnabler {
         return TransactionSynchronizationManager.hasResource(sessionFactory);
     }
 
-    private void updateFilterParameter(Session session, Integer tenantId) {
+    private void updateFilterParameter(Session session, Long tenantId) {
         if (tenantId != null) {
             enableHibernateFilterForTenant(session, tenantId);
         } else {
@@ -55,7 +54,7 @@ public class TenantHibernateFilterEnabler {
     }
 
     @SuppressWarnings("unchecked")
-    private void enableHibernateFilterForTenant(Session session, Integer tenantId) {
+    private void enableHibernateFilterForTenant(Session session, Long tenantId) {
         String filterName = multiTenantHibernateFilter.getFilterName();
         Set<String> paramNames = multiTenantHibernateFilter.getParameterNames();
         String paramName = paramNames.iterator().next();

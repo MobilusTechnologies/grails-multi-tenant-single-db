@@ -7,7 +7,6 @@ import grails.plugin.multitenant.core.exception.TenantSecurityException
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 
-import spock.lang.FailsWith
 import demo.DemoProduct
 
 /**
@@ -166,7 +165,7 @@ class TenantHibernateEventListenerIntegrationSpec extends Specification {
 //        assert session.createSQLQuery("insert into demo_pet_owner(version, name, tenant_id) values(0, 'Mickey Mouse', 567)").executeUpdate() == 1
 //
 //        when:
-//        Integer mickeyId = Tenant.withTenantId(567) {
+//        Long mickeyId = Tenant.withTenantId(567) {
 //            DemoPetOwner.findByName("Mickey Mouse")?.id
 //        }
 //

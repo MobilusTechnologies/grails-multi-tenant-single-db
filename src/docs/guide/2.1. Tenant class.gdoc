@@ -1,5 +1,5 @@
 Most applications will have a domain class where you store tenant data. This will probably be named something like @User@, @Customer@ or @Tenant@.
-By implementing the interface @grails.plugin.multitenant.core.Tenant@ and overriding the @Integer tenantId()@ method, 
+By implementing the interface @grails.plugin.multitenant.core.Tenant@ and overriding the @Long tenantId()@ method,
 the plugin will give you some benefits out of the box.  
 
 The examples below assumes that you have a tenant class similar to this.
@@ -11,7 +11,7 @@ class Customer implements Tenant {
 
     String name
 
-    Integer tenantId() {
+    Long tenantId() {
         return this.id
     }
 

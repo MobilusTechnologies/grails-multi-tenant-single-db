@@ -2,20 +2,12 @@ package grails.plugin.multitenant.core.servlet;
 
 import grails.plugin.multitenant.core.CurrentTenant;
 import grails.plugin.multitenant.core.resolve.TenantResolver;
-
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * This filter will be applied to incoming http requests.
@@ -46,7 +38,7 @@ public class CurrentTenantServletFilter implements Filter {
         try {
             if (request instanceof HttpServletRequest) {
                 HttpServletRequest httpRequest = (HttpServletRequest) request;
-                Integer currentTenantId = tenantResolver.resolve(httpRequest);
+                Long currentTenantId = tenantResolver.resolve(httpRequest);
                 currentTenant.set(currentTenantId);
             }
 

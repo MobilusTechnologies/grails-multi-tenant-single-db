@@ -2,11 +2,9 @@ package grails.plugin.multitenant.core.ast
 
 import grails.plugin.multitenant.core.MultiTenantDomainClass
 import grails.plugin.multitenant.core.annotation.MultiTenant
-import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 import java.lang.reflect.Field
-
 /**
  * @author Kim A. Betti
  */
@@ -16,7 +14,7 @@ class MultiTenantASTSpec extends Specification {
         expect:
         SampleDomainClass.declaredFields.find { Field field ->
             field.name == "tenantId"
-            field.type == Integer
+            field.type == Long
         }
     }
 

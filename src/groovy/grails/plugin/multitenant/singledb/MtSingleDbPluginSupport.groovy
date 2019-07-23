@@ -50,7 +50,7 @@ class MtSingleDbPluginSupport {
         // each tenant only sees and touches its own data.
         multiTenantHibernateFilter(FilterDefinitionFactoryBean) {
             defaultFilterCondition = ":tenantId = tenant_id"
-            parameterTypes = [ tenantId: "java.lang.Integer" ]
+            parameterTypes = [ tenantId: "java.lang.Long" ]
         }
 
         // Listens for new Hibernate sessions and enables the
@@ -105,7 +105,7 @@ class MtSingleDbPluginSupport {
 
     static createWithThisTenantMethod(Class tenantClass, MultiTenantService mtService) {
         tenantClass.metaClass.withThisTenant = { Closure closure ->
-            Integer tenantId = tenantId()
+            Long tenantId = tenantId()
             if (tenantId == null) {
                 String exMessage = ("Can't execute closure in tenent namespace without a tenant id. "
                     + "Make sure that the domain instance has been saved to database "
@@ -119,7 +119,7 @@ class MtSingleDbPluginSupport {
     }
 
     static createWithTenantIdMethod(Class tenantClass, MultiTenantService mtService) {
-        tenantClass.metaClass.'static'.withTenantId = { Integer tenantId, Closure closure ->
+        tenantClass.metaClass.'static'.withTenantId = { Long tenantId, Closure closure ->
             mtService.doWithTenantId(tenantId, closure)
         }
     }

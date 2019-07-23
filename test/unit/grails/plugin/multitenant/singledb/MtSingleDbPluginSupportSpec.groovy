@@ -3,9 +3,7 @@ package grails.plugin.multitenant.singledb
 import grails.plugin.multitenant.core.MultiTenantService
 import grails.plugin.multitenant.core.Tenant
 import grails.plugin.multitenant.core.exception.TenantException
-import grails.test.mixin.TestFor
 import spock.lang.Specification
-
 /**
  * @author Kim A. Betti
  */
@@ -72,8 +70,8 @@ class MtSingleDbPluginSupportSpec extends Specification {
     }
 
     private class MetaTenant implements Tenant {
-        Integer id
-        Integer tenantId = 123
-        Integer tenantId() { tenantId }
+        Long id
+        Long tenantId = 123
+        Long tenantId() { tenantId }
     }
 }

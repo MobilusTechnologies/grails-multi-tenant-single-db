@@ -3,7 +3,7 @@ Most multi-tenant applications would define tenant based on the URL used to reac
 or any other thing that you want. 
 
 When implementing your own tenant resolver, you'll have to implement the @grails.plugin.multitenant.core.resolve.TenantResolver@ 
-interface and override the @public Integer resolve(HttpServletRequest request)@ method.
+interface and override the @public Long resolve(HttpServletRequest request)@ method.
 
 For example, imagine you have the '*.greatapp.com' hosting your application.
 
@@ -19,7 +19,7 @@ import grails.plugin.multitenant.core.resolve.TenantResolver
 class TenantDomainResolver implements TenantResolver {
 
     @Override
-    public Integer resolve(HttpServletRequest request) {
+    public Long resolve(HttpServletRequest request) {
 
         String host = request.getServerName()
         switch (host) {

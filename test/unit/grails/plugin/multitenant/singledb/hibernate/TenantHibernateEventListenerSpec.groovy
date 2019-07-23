@@ -5,15 +5,11 @@ import grails.plugin.multitenant.core.CurrentTenant
 import grails.plugin.multitenant.core.MultiTenantDomainClass
 import grails.plugin.multitenant.core.exception.NoCurrentTenantException
 import grails.plugin.multitenant.core.exception.TenantSecurityException
-import grails.test.mixin.TestFor
-import spock.lang.Specification
-
 import org.hibernate.event.PreDeleteEvent
 import org.hibernate.event.PreInsertEvent
 import org.hibernate.event.PreUpdateEvent
-
+import spock.lang.Specification
 import spock.lang.Unroll
-
 /**
  * @author Kim A. Betti
  */
@@ -136,5 +132,5 @@ class TenantHibernateEventListenerSpec extends Specification {
 }
 
 class DummyEntity implements MultiTenantDomainClass {
-    Integer tenantId
+    Long tenantId
 }
